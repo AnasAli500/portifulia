@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gradient-to-br from-[#1a1f2c] to-[#0a192f] text-gray-300;
+    @apply transition-colors duration-300;
+  }
+
+  .light {
+    @apply bg-gradient-to-br from-[#f8fafc] to-[#e2e8f0];
+  }
+
+  .light .bg-\[\#112240\] {
+    @apply bg-white shadow-xl backdrop-blur-sm bg-opacity-90;
+  }
+
+  .light .text-gray-400 {
+    @apply text-gray-700;
+  }
+
+  .light .border-gray-800 {
+    @apply border-gray-200;
+  }
+
+  .text-primary {
+    @apply text-emerald-400 dark:text-emerald-300;
+  }
+}
+
+@layer utilities {
+  .animate-spin-slow {
+    animation: spin 8s linear infinite;
+  }
+
+  .animate-blink {
+    animation: blink 1s step-end infinite;
+  }
+
+  .gradient-border {
+    @apply border-4 border-transparent bg-gradient-to-r from-emerald-400 to-teal-500 bg-clip-border;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
