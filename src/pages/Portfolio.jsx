@@ -1,33 +1,36 @@
 import { motion } from 'framer-motion'
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
 import { useTheme } from '../context/ThemeContext'
+import image3 from "../assets/Screenshot 2025-09-02 121523.png"
+import image4 from "../assets/Screenshot 2025-09-02 123616.png"
+import image5 from "../assets/Screenshot 2025-09-02 123950.png"
 const Portfolio = () => {
   const { isDark } = useTheme()
 
   const projects = [
     {
-      title: 'E-commerce Website',
+      title: 'Portifullia Website',
       description: 'A modern e-commerce platform built with React and Node.js',
-      image: '',
+      image: image3,
       tech: ['React', 'Node.js', 'MongoDB'],
-      github:"",
-      live:""
+      github:"https://github.com/AnasAli500",
+      live:"https://anas-five.vercel.app/"
     },
     {
-      title: 'Task Management App',
+      title: 'Trusim website',
       description: 'A productivity app for managing daily tasks and projects',
-      image: '/project2.jpg',
+      image: image4,
       tech: ['React', 'Firebase', 'Tailwind'],
-      github: '',
-      live: ''
+      github: 'https://github.com/AnasAli500',
+      live: 'https://trusim.vercel.app/'
     },
     {
       title: 'Weather Dashboard',
       description: 'Real-time weather information using OpenWeather API',
-      image: '/project3.jpg',
+      image: image5,
       tech: ['React', 'API Integration', 'CSS'],
-      github:"",
-      live:""
+      github:"https://github.com/AnasAli500",
+      live:"https://react-tasbiix.vercel.app/"
     },
   ]
 
