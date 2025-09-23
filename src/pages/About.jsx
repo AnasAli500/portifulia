@@ -49,7 +49,7 @@ const About = () => {
                   <div>
                     <h4 className={isDark ? 'text-green-500' : 'text-green-600'}>Frontend Developer</h4>
                     <p className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-                      Company Name • 2022 - Present
+                      Company Name • 2024 - Present
                     </p>
                     <p className={`mt-2 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
                       Developing and maintaining modern web applications using React.js
