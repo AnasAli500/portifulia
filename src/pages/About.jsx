@@ -59,7 +59,7 @@ const About = () => {
                   <div>
                     <h4 className={isDark ? 'text-green-500' : 'text-green-600'}>Web Developer Intern</h4>
                     <p className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-                      Company Name • 2021 - 2022
+                      Company Name • 2024 - 2025
                     </p>
                     <p className={`mt-2 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
                       Assisted in developing web applications and learned modern
