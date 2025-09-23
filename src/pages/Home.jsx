@@ -46,10 +46,10 @@ const Home = () => {
   }, [text, isDeleting, loopNum, typingSpeed, titles])
   
   const socialLinks = [
-    { icon: <FaGithub size={20} />, url: 'https://github.com' },
+    { icon: <FaGithub size={20} />, url: 'https://github.com/AnasAli500' },
     { icon: <FaLinkedin size={20} />, url: 'https://linkedin.com' },
-    { icon: <FaTwitter size={20} />, url: 'https://twitter.com' },
-    { icon: <FaEnvelope size={20} />, url: 'mailto:your.email@example.com' },
+    { icon: <FaTwitter size={20} />, url: 'https://x.com/AnasAli400000?t=IBAAWA6LrW5g7EuAUGPOvw&s=08' },
+    { icon: <FaEnvelope size={20} />, url: 'mailto:anasalibotan500@gmail.com' },
   ]
 
   return (
