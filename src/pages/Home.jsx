@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from 'react-icons/fa'
 import { useTheme } from '../context/ThemeContext'
-import profileImage from '../assets/WhatsApp Image 2025-03-15 at 06.17.40_d819a60f.jpg'
+import profileImage from '../assets/WhatsApp Image 2025-09-23 at 09.20.41_636ba955.jpg'
 import { useState, useEffect } from 'react'
 
 const Home = () => {
