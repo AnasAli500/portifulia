@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import { FaSun, FaMoon } from 'react-icons/fa'
 import { useTheme } from '../context/ThemeContext'
 
@@ -6,47 +7,62 @@ const Navbar = () => {
   const { isDark, toggleTheme } = useTheme()
   const [activeSection, setActiveSection] = useState('home')
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const location = useLocation()
 
   const navItems = [
-    { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About' },
-    { id: 'services', label: 'Services' },
-    { id: 'portfolio', label: 'Portfolio' },
-    { id: 'contact', label: 'Contact' },
+    { id: 'home', label: 'Home', path: '/' },
+    { id: 'about', label: 'About', path: '/about' },
+    { id: 'services', label: 'Services', path: '/services' },
+    { id: 'portfolio', label: 'Portfolio', path: '/portfolio' },
+    { id: 'contact', label: 'Contact', path: '/contact' },
   ]
 
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = navItems.map(item => document.getElementById(item.id))
-      const scrollPosition = window.scrollY + 200
+    // Set active section based on current route
+    const currentPath = location.pathname
+    if (currentPath === '/') {
+      // On home page, use scroll-based detection
+      const handleScroll = () => {
+        const sections = navItems.map(item => document.getElementById(item.id))
+        const scrollPosition = window.scrollY + 200
 
-      sections.forEach(section => {
-        if (!section) return
-        
-        const sectionTop = section.offsetTop
-        const sectionHeight = section.clientHeight
-        
-        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-          setActiveSection(section.id)
-        }
-      })
+        sections.forEach(section => {
+          if (!section) return
+          
+          const sectionTop = section.offsetTop
+          const sectionHeight = section.clientHeight
+          
+          if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            setActiveSection(section.id)
+          }
+        })
+      }
+
+      window.addEventListener('scroll', handleScroll)
+      return () => window.removeEventListener('scroll', handleScroll)
+    } else {
+      // On other pages, set active section based on route
+      const currentItem = navItems.find(item => item.path === currentPath)
+      if (currentItem) {
+        setActiveSection(currentItem.id)
+      }
     }
+  }, [location.pathname])
 
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  const handleNavigation = (item) => {
+    if (location.pathname === '/') {
+      // On home page, scroll to section
+      const element = document.getElementById(item.id)
+      if (element) {
+        const offset = 80
+        const elementPosition = element.getBoundingClientRect().top
+        const offsetPosition = elementPosition + window.pageYOffset - offset
 
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      const offset = 80
-      const elementPosition = element.getBoundingClientRect().top
-      const offsetPosition = elementPosition + window.pageYOffset - offset
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      })
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        })
+      }
     }
     setIsMenuOpen(false)
   }
@@ -65,9 +81,10 @@ const Navbar = () => {
           <div className="hidden md:block">
             <div className="ml-10 flex items-center space-x-4">
               {navItems.map((item) => (
-                <button
+                <Link
                   key={item.id}
-                  onClick={() => scrollToSection(item.id)}
+                  to={item.path}
+                  onClick={() => handleNavigation(item)}
                   className={`px-3 py-2 rounded-md text-sm font-medium transition-colors
                     ${activeSection === item.id 
                       ? (isDark ? 'text-green-400 bg-[#112240]' : 'text-green-600 bg-gray-100')
@@ -75,7 +92,7 @@ const Navbar = () => {
                     }`}
                 >
                   {item.label}
-                </button>
+                </Link>
               ))}
               <button
                 onClick={toggleTheme}
@@ -119,9 +136,10 @@ const Navbar = () => {
             <div className={`px-2 pt-2 pb-3 space-y-1 sm:px-3
               ${isDark ? 'bg-[#0a192f]' : 'bg-white'}`}>
               {navItems.map((item) => (
-                <button
+                <Link
                   key={item.id}
-                  onClick={() => scrollToSection(item.id)}
+                  to={item.path}
+                  onClick={() => handleNavigation(item)}
                   className={`block w-full px-3 py-2 rounded-md text-base font-medium text-left
                     ${activeSection === item.id
                       ? (isDark ? 'text-green-400 bg-[#112240]' : 'text-green-600 bg-gray-100')
@@ -129,7 +147,7 @@ const Navbar = () => {
                     }`}
                 >
                   {item.label}
-                </button>
+                </Link>
               ))}
             </div>
           </div>
